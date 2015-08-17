@@ -32,7 +32,7 @@ class ListsController < ApplicationController
   def delete
     #lets a user delete a drink IF they have NOT check it off
     #else......they can't. You've already had it.
-    @list = Product.find(params[list]).destroy
+    @list = List.find(params[:list][:id]).destroy
   end
   private
   def list_params
