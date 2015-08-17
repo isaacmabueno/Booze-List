@@ -1,15 +1,28 @@
 class ListsController < ApplicationController
   #get
+
+  # create_table :lists do |t|
+  #   t.string :brand
+  #   t.string :cost
+  #   t.integer :user_id
+  before_filter :authorize
   def index
-    #render a list....give a form to "checkoff"  a vacay
+    #render a list....give a form to "checkoff"  a drink
+    @lists = List.all { |e| }
   end
   #get
   def new
     # displays a form to create a new destination
+    @list = list.new
   end
   #post
   def create
     #handle the form submissiong and add to database
+    @list.create(
+    :brand => params[:list][:brand],
+    :cost => params[:list][:cost],
+    :user_id => params[:list][:user_id].to_i
+    )
   end
   #post
   def update
@@ -17,8 +30,9 @@ class ListsController < ApplicationController
   end
   #patch
   def delete
-    #lets a user delete a drink IF they have NOT check it off 
+    #lets a user delete a drink IF they have NOT check it off
     #else......they can't. You've already had it.
+    @list = Product.find(params[list]).destroy
   end
   #get request
   def confirmation
