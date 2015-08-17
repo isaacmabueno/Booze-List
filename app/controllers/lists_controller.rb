@@ -13,12 +13,12 @@ class ListsController < ApplicationController
   #get
   def new
     # displays a form to create a new destination
-    @list = list.new
+    @list = List.new
   end
   #post
   def create
     #handle the form submissiong and add to database
-    @list.create(
+    @list = List.create(
     :brand => params[:list][:brand],
     :cost => params[:list][:cost],
     :user_id => params[:list][:user_id].to_i
@@ -33,6 +33,10 @@ class ListsController < ApplicationController
     #lets a user delete a drink IF they have NOT check it off
     #else......they can't. You've already had it.
     @list = Product.find(params[list]).destroy
+  end
+  private
+  def list_params
+    params.require(:list).permit(:name, :quantity)
   end
   #get request
   def confirmation

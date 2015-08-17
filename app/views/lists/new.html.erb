@@ -1,2 +1,8 @@
-<h1>Lists#new</h1>
-<p>Find me in app/views/lists/new.html.erb</p>
+<h1>Add Booze</h1>
+<h3>NEW</h3>
+
+<%= form_for @list, url: {action: 'create'} do |f| %>
+  <p> Item: <%= f.text_field :brand %> </p>
+  <p> Cost: <%= f.text_field :cost %> </p>
+  <p><%= f.submit 'Add Item' %></p>
+  <% end %>

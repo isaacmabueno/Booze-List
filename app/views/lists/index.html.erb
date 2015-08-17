@@ -1,2 +1,65 @@
-<h1>Lists#index</h1>
-<p>Find me in app/views/lists/index.html.erb</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class ='topbg'>
+      <h1 class= 'header'>BOOZE-LIST</h1>
+      </div>
+      <div class='border'>
+      <li><a href="lists/new">Add booze to list</a></li>
+
+      <h4>List of booze to drink</h4>
+
+      <table class='table'>
+
+        <thead>
+          <tr>
+            <td>
+              <h3 class= 'dividers'>
+              Preferred Poison
+            </h3>
+            </td>
+            <td>
+              <h3 class= 'dividers'>
+              Quantity
+              </h3>
+            </td>
+            <td>
+              <h3 class= 'dividers'>
+              Done
+              </h3>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+
+      <% @lists.each do |item| %>
+
+        <tr>
+          <td>
+            <h4>
+            <%= item.brand %>
+            </h4>
+          </td>
+          <td>
+            <h5>
+            <%= item.cost %>
+          </h5>
+          </td>
+          <td>
+            <%= form_for item, url: {action: 'delete'} do |f| %>
+              <%= f.hidden_field :id %>
+              <%= f.submit 'Check Off' %>
+            <% end %>
+          </td>
+        </tr>
+
+      <% end %>
+      </tbody>
+      </table>
+    </div>
+    </div>
+
+  </div>
+
+</div>
